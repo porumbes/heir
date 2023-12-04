@@ -1,4 +1,3 @@
-//#include <OpenMesh/Core/IO/importer/ImporterT.hh>
 #include <OpenMesh/Core/IO/MeshIO.hh>
 #include <OpenMesh/Core/Mesh/TriMesh_ArrayKernelT.hh>
 #include <polyscope/polyscope.h>
@@ -27,9 +26,6 @@ unpack_open_mesh(simpleMesh &reference_mesh) {
             current_point[1],
             current_point[2]
         };
-        //current_array_point[0] = current_point[0];
-        //current_array_point[1] = current_point[1];
-        //current_array_point[2] = current_point[2];
         vertexPositions.push_back(current_array_point);
     }
     for (auto f: reference_mesh.faces()) {
@@ -51,7 +47,6 @@ std::pair<std::vector<std::array<double, 3>>, std::vector<std::array<unsigned in
 get_feature_edges(simpleMesh &reference_mesh, double feature_angle = 45.0) {
     std::vector<std::array<unsigned int, 2> > feature_edges_global;
     std::set<unsigned int> unique_vertex_ids;
-    //auto feature_count = reference_mesh.find_feature_edges();
     auto feature_count = 
         reference_mesh.find_feature_edges(OpenMesh::deg_to_rad(feature_angle));
     std::cout << "feature_count = " << feature_count << std::endl;
